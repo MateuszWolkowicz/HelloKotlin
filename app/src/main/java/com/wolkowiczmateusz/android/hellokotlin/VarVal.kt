@@ -10,6 +10,7 @@ class VarVal {
 
     fun main() {
         println("Hello, world!!!")
+        charVsString()
         varVal()
         nullability()
         ifElse()
@@ -17,6 +18,12 @@ class VarVal {
         conversion(3, "4")
         listArray()
         loops()
+    }
+
+    private fun charVsString() {
+        var charType = 's' // '' for char
+        var stringType = "s" // "" for string
+         // charType = stringType // error
     }
 
     fun varVal() {
