@@ -6,6 +6,7 @@ class Functions {
     fun main(args: Array<String>) {
         println("Hello ${args[0]} ")
         dayOfWeek()
+
         feedTheFish()
         swim()
         swim("slow")
