@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
                     .setAction("Action", null).show()
             Functions().main(arrayOf("World"))
             VarVal().main()
+            Lambdas().main()
         }
     }
 
