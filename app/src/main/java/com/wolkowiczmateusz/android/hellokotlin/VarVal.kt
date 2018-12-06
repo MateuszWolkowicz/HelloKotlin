@@ -23,7 +23,7 @@ class VarVal {
     private fun charVsString() {
         var charType = 's' // '' for char
         var stringType = "s" // "" for string
-         // charType = stringType // error
+        // charType = stringType // error
     }
 
     fun varVal() {
