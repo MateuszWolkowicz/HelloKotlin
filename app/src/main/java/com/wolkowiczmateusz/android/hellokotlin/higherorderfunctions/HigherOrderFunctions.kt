@@ -10,7 +10,7 @@ fun fishExample() {
     val fish = Fish("splashy")
 
     myWith(fish.name) {
-        println(capitalize())
+        println(capitalize()) // the same as : this.capitalize()
     }
     println(fish.run { name })
     println(fish.apply { })
