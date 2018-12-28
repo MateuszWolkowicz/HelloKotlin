@@ -99,5 +99,5 @@ class Array2<in T>(val size: Int) {
 class Array3<out T>(val size: Int) {
     fun get(index: Int): T {} // OK beacuse T is OUT
     private fun set(index: Int, value: T) {} // OK (private prevents from IN because it won't be ever accessible)
-//    fun set(index: Int, value: T) {} // NOT OK (only OUT allowed and T is IN)
+    //    fun set(index: Int, value: T) {} // NOT OK (only OUT allowed and T is IN)
 }
