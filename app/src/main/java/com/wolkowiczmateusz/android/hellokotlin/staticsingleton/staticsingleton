@@ -1,0 +1,9 @@
+// singleton
+object MySingletonClass
+
+//static
+class A {
+    companion object {
+        fun a(): Int = 5
+    }
+}
