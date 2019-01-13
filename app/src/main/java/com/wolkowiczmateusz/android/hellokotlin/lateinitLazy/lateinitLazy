@@ -1,0 +1,4 @@
+fun lateinitLazy() {
+    val x: Int by lazy { 10 }  // lazy is for val
+    lateinit var y: String // lateinit is for var
+}
