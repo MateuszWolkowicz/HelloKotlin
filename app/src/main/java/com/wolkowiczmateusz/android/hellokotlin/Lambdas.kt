@@ -1,7 +1,7 @@
 package com.wolkowiczmateusz.android.hellokotlin
 
 import java.lang.Math.random
-import java.util.*
+import java.util.Random
 
 class Lambdas {
     fun main() {
@@ -11,31 +11,34 @@ class Lambdas {
         goInvoke(1) //equivalent with .invoke(1)
 
         //the same
-        println( 4.predicate() )
-        println( 3.predicate() )
-        println( predicate(4) )
-        println( predicate(3) )
+        println(4.predicate())
+        println(3.predicate())
+        println(predicate(4))
+        println(predicate(3))
 
         //the same
-        println( otherPredicate.invoke(4) )
-        println( otherPredicate.invoke(3) )
-        println( otherPredicate(4) )
-        println( otherPredicate(3) )
+        println(otherPredicate.invoke(4))
+        println(otherPredicate.invoke(3))
+        println(otherPredicate(4))
+        println(otherPredicate(3))
+        println({ number: Int -> number % 2 != 0 }(3))
+        println({ number: Int -> number % 2 != 0 }.invoke(3))
 //        println( 3.otherPredicate() )  // not the same, not possible
 
         //the same
-        println( 3.test("2") )
-        println( test(3,"2") )
+        println(3.test("2"))
+        println(test(3, "2"))
 
         //the same
-        println( 3.test("ok") )
-        println( test(3,"ok") )
+        println(3.test("ok"))
+        println(test(3, "ok"))
 
         //the same
-        println( 3.test2("ok",1) )
-        println( test2(3,"ok",1) )
+        println(3.test2("ok", 1))
+        println(test2(3, "ok", 1))
 //        println( test2("ok",3,1) )  // not the same, not possible
 
+        println(addOffset(2))
     }
 
     val swim = { println("swim \n") }
@@ -99,13 +102,21 @@ class Lambdas {
         println(diceRoll)
     }
 
-
     var goInvoke: (number: Int) -> Unit = {
         println("here $it")
     }
 
+    //the same
+//    var goInvoke: (Int) -> Unit = {
+//        println("here $it")
+//    }
 
-    val predicate : Int.() -> Boolean = {
+//    the same
+//    var goInvoke = { it: Int ->
+//        println("here $it")
+//    }
+
+    val predicate: Int.() -> Boolean = {
         this % 2 != 0
     }
 
@@ -113,13 +124,11 @@ class Lambdas {
         this % 2 != 0 && "ok" == it
     }
 
-    val test2: Int.(String,Int) -> Boolean = {
-        str,intt ->
+    val test2: Int.(String, Int) -> Boolean = { str, intt ->
         this % 2 != 0 && "ok" == str && intt == 0
     }
 
-    val otherPredicate : (Int) -> Boolean = {
+    val otherPredicate: (Int) -> Boolean = {
         it % 2 != 0
     }
-
 }
