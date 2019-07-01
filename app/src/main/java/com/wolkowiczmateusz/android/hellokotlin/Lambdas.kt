@@ -10,6 +10,16 @@ class Lambdas {
         goInvoke.invoke(1) //equivalent
         goInvoke(1) //equivalent with .invoke(1)
 
+        val goInvokeAlias: OnGoInvokeListener = { println("here $it") }
+
+        goInvokeAlias(2)
+        goInvokeAlias.invoke(2)
+
+        val goInvokeAliasInvoke: OnGoInvokeListener = { }
+
+        goInvokeAliasInvoke(2)
+        goInvokeAliasInvoke.invoke(2)
+
         //the same
         println(4.predicate())
         println(3.predicate())
@@ -38,7 +48,21 @@ class Lambdas {
         println(test2(3, "ok", 1))
 //        println( test2("ok",3,1) )  // not the same, not possible
 
-        println(addOffset(2))
+        otherOtherPredicateSimpleLastArgLambda { x: Int -> x + 1 }
+
+        otherOtherPredicateSimpleLastArgLambdaWithReceiver { x: Int -> x + 1 }
+
+        val isTrue =  otherOtherPredicateSimpleLastArgLambdaWithReceiver { x: Int -> x + 1 }
+
+        // Last argument lambda
+        otherOtherPredicateLastArgLambda(2) { x: Int -> x + 1 }
+
+        // General syntax
+        otherOtherPredicateNotLastArgLambda({ x: Int -> x + 1 }, 2)
+        otherOtherPredicateNotLastArgLambdaTypeAlias({ x: Int -> x + 1 }, 2)
+
+        // to value
+        val pred2 = otherOtherPredicateLastArgLambda(2) { x: Int -> x + 1 }
     }
 
     val swim = { println("swim \n") }
@@ -102,17 +126,17 @@ class Lambdas {
         println(diceRoll)
     }
 
-    var goInvoke: (number: Int) -> Unit = {
+    val goInvoke: (number: Int) -> Unit = {
         println("here $it")
     }
 
     //the same
-//    var goInvoke: (Int) -> Unit = {
+//    val goInvoke: (Int) -> Unit = {
 //        println("here $it")
 //    }
 
 //    the same
-//    var goInvoke = { it: Int ->
+//    val goInvoke = { it: Int ->
 //        println("here $it")
 //    }
 
@@ -131,4 +155,27 @@ class Lambdas {
     val otherPredicate: (Int) -> Boolean = {
         it % 2 != 0
     }
+
+    fun otherOtherPredicateSimpleLastArgLambda(lambda: (Int) -> Int) {
+       println(lambda.invoke(2) % 2 != 0)
+    }
+
+    fun otherOtherPredicateSimpleLastArgLambdaWithReceiver(lambda: (Int) -> Int): Boolean {
+        return lambda.invoke(2) % 2 != 0
+    }
+
+    fun otherOtherPredicateLastArgLambda(base: Int, lambda: (Int) -> Int): Boolean {
+        return lambda.invoke(base) % 2 != 0
+    }
+
+    fun otherOtherPredicateNotLastArgLambda(lambda: (Int) -> Int, base: Int): Boolean {
+        return lambda.invoke(base) % 2 != 0
+    }
+
+    fun otherOtherPredicateNotLastArgLambdaTypeAlias(lambda: FancyLambda, base: Int): Boolean {
+        return lambda.invoke(base) % 2 != 0
+    }
 }
+
+typealias OnGoInvokeListener = (number: Int) -> Unit
+typealias FancyLambda = (Int) -> Int
