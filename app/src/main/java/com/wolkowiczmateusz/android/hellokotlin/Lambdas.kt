@@ -63,6 +63,8 @@ class Lambdas {
 
         // to value
         val pred2 = otherOtherPredicateLastArgLambda(2) { x: Int -> x + 1 }
+
+        otherOtherPredicateLastArgLambdaExntensionsFunc(2) { 3.predicate() }
     }
 
     val swim = { println("swim \n") }
@@ -166,6 +168,10 @@ class Lambdas {
 
     fun otherOtherPredicateLastArgLambda(base: Int, lambda: (Int) -> Int): Boolean {
         return lambda.invoke(base) % 2 != 0
+    }
+
+    fun otherOtherPredicateLastArgLambdaExntensionsFunc(base: Int, lambda: Int.() -> Boolean): Boolean {
+        return base.lambda()
     }
 
     fun otherOtherPredicateNotLastArgLambda(lambda: (Int) -> Int, base: Int): Boolean {
