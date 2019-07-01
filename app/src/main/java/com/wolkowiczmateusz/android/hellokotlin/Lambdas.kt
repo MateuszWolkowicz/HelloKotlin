@@ -65,6 +65,9 @@ class Lambdas {
         val pred2 = otherOtherPredicateLastArgLambda(2) { x: Int -> x + 1 }
 
         otherOtherPredicateLastArgLambdaExntensionsFunc(2) { 3.predicate() }
+
+        // anonymous function
+        val filter = fun(x : Int) : Boolean = x < 2
     }
 
     val swim = { println("swim \n") }
